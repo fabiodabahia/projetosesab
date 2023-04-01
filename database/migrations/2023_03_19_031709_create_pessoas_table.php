@@ -15,7 +15,7 @@ class CreatePessoasTable extends Migration
     {
         Schema::create('pessoas', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->date();
             $table->string('nome', 30);
             $table->integer('CPF')->unique();
             $table->string('email', 30);

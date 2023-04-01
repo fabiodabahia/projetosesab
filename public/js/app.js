@@ -3581,6 +3581,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3603,11 +3644,15 @@ __webpack_require__.r(__webpack_exports__);
       },
       busca: {
         CPF: '',
-        nome: ''
+        nome: '',
+        data: ''
       }
     };
   },
   methods: {
+    voltar: function voltar() {
+      window.location.href = "http://localhost:8000/home";
+    },
     editar: function editar() {
       var _this = this;
       var formData = new FormData();
@@ -3626,6 +3671,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(url, formData, config).then(function (response) {
         console.log('Atualizado', response);
         _this.carregarLista();
+        window.location.href = "http://localhost:8000/home";
       })["catch"](function (errors) {
         console.log('Erro de atualização', errors.response);
       });
@@ -3652,7 +3698,7 @@ __webpack_require__.r(__webpack_exports__);
       var filtro = '';
       for (var chave in this.busca) {
         if (this.busca[chave]) {
-          //console.log(chave, this.busca[chave])
+          console.log(chave, this.busca[chave]);
           if (filtro != '') {
             filtro += ";";
           }
@@ -4077,6 +4123,21 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('paginate-component', (__w
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].filter('formataDataTempoGlobal', function (d) {
+  if (!d) return '';
+  d = d.split('T');
+  var data = d[0];
+  var tempo = d[1];
+
+  //formatando a data
+  data = data.split('-');
+  data = data[2] + '/' + data[1] + '/' + data[0];
+
+  //formatar o tempo
+  tempo = tempo.split('.');
+  tempo = tempo[0];
+  return data + ' ';
+});
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app',
   store: store
@@ -40308,600 +40369,704 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-11" },
-          [
-            _c("card-component", {
-              attrs: { titulo: "Busca de pessoas" },
-              scopedSlots: _vm._u([
-                {
-                  key: "conteudo",
-                  fn: function () {
-                    return [
-                      _c("div", { staticClass: "form-row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col mb-3" },
-                          [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "tab-content" }, [
+      _c(
+        "div",
+        { staticClass: "tab-pane fade show active", attrs: { id: "home" } },
+        [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c(
+              "div",
+              { staticClass: "col-md-11" },
+              [
+                _c("card-component", {
+                  attrs: { titulo: "Busca de pessoas" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "conteudo",
+                      fn: function () {
+                        return [
+                          _c("div", { staticClass: "form-row" }, [
                             _c(
-                              "input-container-component",
-                              {
-                                attrs: {
-                                  titulo: "Nome",
-                                  id: "inputNome",
-                                  "id-help": "nomeHelp",
-                                },
-                              },
+                              "div",
+                              { staticClass: "col mb-3" },
                               [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.busca.nome,
-                                      expression: "busca.nome",
-                                    },
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    id: "inputNome",
-                                    "aria-describedby": "nomeHelp",
-                                    placeholder: "Digite o nome pessoa",
-                                  },
-                                  domProps: { value: _vm.busca.nome },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.busca,
-                                        "nome",
-                                        $event.target.value
-                                      )
+                                _c(
+                                  "input-container-component",
+                                  {
+                                    attrs: {
+                                      titulo: "Nome",
+                                      id: "inputNome",
+                                      "id-help": "nomeHelp",
                                     },
                                   },
-                                }),
-                              ]
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.busca.nome,
+                                          expression: "busca.nome",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "inputNome",
+                                        "aria-describedby": "nomeHelp",
+                                        placeholder: "Digite o nome pessoa",
+                                      },
+                                      domProps: { value: _vm.busca.nome },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.busca,
+                                            "nome",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ],
+                              1
                             ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col mb-3" },
-                          [
+                            _vm._v(" "),
                             _c(
-                              "input-container-component",
-                              {
-                                attrs: {
-                                  titulo: "CPF",
-                                  id: "inputCPF",
-                                  "id-help": "CPFHelp",
-                                },
-                              },
+                              "div",
+                              { staticClass: "col mb-3" },
                               [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.busca.CPF,
-                                      expression: "busca.CPF",
-                                    },
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "number",
-                                    id: "inputCPF",
-                                    "aria-describedby": "idHelp",
-                                    placeholder: "Digite o CPF",
-                                  },
-                                  domProps: { value: _vm.busca.CPF },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.busca,
-                                        "CPF",
-                                        $event.target.value
-                                      )
+                                _c(
+                                  "input-container-component",
+                                  {
+                                    attrs: {
+                                      titulo: "CPF",
+                                      id: "inputCPF",
+                                      "id-help": "CPFHelp",
                                     },
                                   },
-                                }),
-                              ]
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.busca.CPF,
+                                          expression: "busca.CPF",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "number",
+                                        id: "inputCPF",
+                                        "aria-describedby": "idHelp",
+                                        placeholder: "Digite o CPF",
+                                      },
+                                      domProps: { value: _vm.busca.CPF },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.busca,
+                                            "CPF",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ],
+                              1
                             ),
-                          ],
-                          1
-                        ),
-                      ]),
-                    ]
-                  },
-                  proxy: true,
-                },
-                {
-                  key: "rodape",
-                  fn: function () {
-                    return [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary btn-sm float-right",
-                          attrs: { type: "submit" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.pesquisar()
-                            },
-                          },
-                        },
-                        [_vm._v("Pesquisar")]
-                      ),
-                    ]
-                  },
-                  proxy: true,
-                },
-              ]),
-            }),
-            _vm._v(" "),
-            _c("card-component", {
-              attrs: { titulo: "Relação de pessoas" },
-              scopedSlots: _vm._u([
-                {
-                  key: "conteudo",
-                  fn: function () {
-                    return [
-                      _c("table-component", {
-                        attrs: {
-                          dados: _vm.pessoas.data,
-                          detalhar: {
-                            visivel: true,
-                            dataToggle: "modal",
-                            dataTarget: "#modalPessoaDetalhar",
-                          },
-                          editar: {
-                            visivel: true,
-                            dataToggle: "modal",
-                            dataTarget: "#modalPessoaEditar",
-                          },
-                          excluir: {
-                            visivel: true,
-                            dataToggle: "modal",
-                            dataTarget: "#modalPessoaExcluir",
-                          },
-                          titulos: {
-                            id: { titulo: "ID", tipo: "texto" },
-                            created_at: {
-                              titulo: "Data de cadastro",
-                              tipo: "data",
-                            },
-                            nome: { titulo: "Nome", tipo: "texto" },
-                            CPF: { titulo: "CPF", tipo: "texto" },
-                            email: { titulo: "E-mail", tipo: "texto" },
-                            perfil: { titulo: "Perfil", tipo: "texto" },
-                          },
-                        },
-                      }),
-                    ]
-                  },
-                  proxy: true,
-                },
-                {
-                  key: "rodape",
-                  fn: function () {
-                    return [
-                      _c(
-                        "paginate-component",
-                        _vm._l(_vm.pessoas.links, function (l, key) {
-                          return _c(
-                            "li",
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col mb-3" },
+                              [
+                                _c(
+                                  "input-container-component",
+                                  {
+                                    attrs: {
+                                      titulo: "Inicio",
+                                      id: "inputdatainicio",
+                                      "id-help": "datainicioHelp",
+                                    },
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.busca.datainicio,
+                                          expression: "busca.datainicio",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "date",
+                                        id: "inputDatainicio",
+                                        "aria-describedby": "datainicioHelp",
+                                      },
+                                      domProps: { value: _vm.busca.datainicio },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.busca,
+                                            "datainicio",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col mb-3" },
+                              [
+                                _c(
+                                  "input-container-component",
+                                  {
+                                    attrs: {
+                                      titulo: "Fim",
+                                      id: "inputdatafim",
+                                      "id-help": "datafimHelp",
+                                    },
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.busca.datafim,
+                                          expression: "busca.datafim",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "date",
+                                        id: "inputDatafim",
+                                        "aria-describedby": "datafimHelp",
+                                      },
+                                      domProps: { value: _vm.busca.datafim },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.busca,
+                                            "datafim",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ],
+                              1
+                            ),
+                          ]),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                    {
+                      key: "rodape",
+                      fn: function () {
+                        return [
+                          _c(
+                            "button",
                             {
-                              key: key,
-                              class: l.active
-                                ? "page-item active"
-                                : "page-item",
+                              staticClass: "btn btn-primary btn-sm float-right",
+                              attrs: { type: "submit" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.paginacao(l)
+                                  return _vm.pesquisar()
                                 },
                               },
                             },
-                            [
-                              _c("a", {
-                                staticClass: "page-link",
-                                domProps: { innerHTML: _vm._s(l.label) },
-                              }),
-                            ]
-                          )
-                        }),
-                        0
-                      ),
-                    ]
-                  },
-                  proxy: true,
+                            [_vm._v("Pesquisar")]
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                }),
+                _vm._v(" "),
+                _c("card-component", {
+                  attrs: { titulo: "Relação de pessoas" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "conteudo",
+                      fn: function () {
+                        return [
+                          _c("table-component", {
+                            attrs: {
+                              dados: _vm.pessoas.data,
+                              detalhar: {
+                                visivel: true,
+                                dataToggle: "modal",
+                                dataTarget: "#modalPessoaDetalhar",
+                              },
+                              editar: {
+                                visivel: true,
+                                dataToggle: "tab",
+                                dataTarget: "#modalPessoaEditar",
+                              },
+                              excluir: {
+                                visivel: true,
+                                dataToggle: "modal",
+                                dataTarget: "#modalPessoaExcluir",
+                              },
+                              titulos: {
+                                id: { titulo: "ID", tipo: "texto" },
+                                created_at: {
+                                  titulo: "Data de cadastro",
+                                  tipo: "data",
+                                },
+                                nome: { titulo: "Nome", tipo: "texto" },
+                                CPF: { titulo: "CPF", tipo: "texto" },
+                                email: { titulo: "E-mail", tipo: "texto" },
+                                perfil: { titulo: "Perfil", tipo: "texto" },
+                              },
+                            },
+                          }),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                    {
+                      key: "rodape",
+                      fn: function () {
+                        return [
+                          _c(
+                            "paginate-component",
+                            _vm._l(_vm.pessoas.links, function (l, key) {
+                              return _c(
+                                "li",
+                                {
+                                  key: key,
+                                  class: l.active
+                                    ? "page-item active"
+                                    : "page-item",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.paginacao(l)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("a", {
+                                    staticClass: "page-link",
+                                    domProps: { innerHTML: _vm._s(l.label) },
+                                  }),
+                                ]
+                              )
+                            }),
+                            0
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                }),
+              ],
+              1
+            ),
+          ]),
+          _vm._v(" "),
+          _c("modal-component", {
+            attrs: { id: "modalPessoaDetalhar", titulo: "Detalhar pessoa" },
+            scopedSlots: _vm._u([
+              {
+                key: "alertas",
+                fn: function () {
+                  return undefined
                 },
-              ]),
-            }),
-          ],
-          1
-        ),
-      ]),
+                proxy: true,
+              },
+              {
+                key: "conteudo",
+                fn: function () {
+                  return [
+                    _c(
+                      "input-container-component",
+                      { attrs: { titulo: "ID" } },
+                      [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text", disabled: "" },
+                          domProps: { value: _vm.$store.state.item.id },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "input-container-component",
+                      { attrs: { titulo: "Nome" } },
+                      [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text", disabled: "" },
+                          domProps: { value: _vm.$store.state.item.nome },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "input-container-component",
+                      { attrs: { titulo: "CPF" } },
+                      [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text", disabled: "" },
+                          domProps: { value: _vm.$store.state.item.CPF },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "input-container-component",
+                      { attrs: { titulo: "Data de Cadastro" } },
+                      [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text", disabled: "" },
+                          domProps: { value: _vm.$store.state.item.created_at },
+                        }),
+                      ]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+              {
+                key: "rodape",
+                fn: function () {
+                  return [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                      },
+                      [_vm._v("Fechar")]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+            ]),
+          }),
+          _vm._v(" "),
+          _c("modal-component", {
+            attrs: { id: "modalPessoaExcluir", titulo: "Excluir pessoa" },
+            scopedSlots: _vm._u([
+              {
+                key: "alertas",
+                fn: function () {
+                  return undefined
+                },
+                proxy: true,
+              },
+              {
+                key: "conteudo",
+                fn: function () {
+                  return [
+                    _c(
+                      "input-container-component",
+                      { attrs: { titulo: "ID" } },
+                      [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text", disabled: "" },
+                          domProps: { value: _vm.$store.state.item.id },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "input-container-component",
+                      { attrs: { titulo: "Nome" } },
+                      [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text", disabled: "" },
+                          domProps: { value: _vm.$store.state.item.nome },
+                        }),
+                      ]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+              {
+                key: "rodape",
+                fn: function () {
+                  return [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                      },
+                      [_vm._v("Fechar")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.excluir()
+                          },
+                        },
+                      },
+                      [_vm._v("Excluir")]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+            ]),
+          }),
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("modal-component", {
-        attrs: { id: "modalPessoaDetalhar", titulo: "Detalhar pessoa" },
-        scopedSlots: _vm._u([
-          {
-            key: "alertas",
-            fn: function () {
-              return undefined
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: { id: "modalPessoaEditar", titulo: "Editar pessoa" },
+        },
+        [
+          _c(
+            "input-container-component",
+            {
+              attrs: {
+                titulo: "Nome da pessoa",
+                id: "novoNome",
+                "id-help": "novoNomeHelp",
+                "texto-ajuda": "Informe o nome da pessoa",
+              },
             },
-            proxy: true,
-          },
-          {
-            key: "conteudo",
-            fn: function () {
-              return [
-                _c("input-container-component", { attrs: { titulo: "ID" } }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.$store.state.item.id },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("input-container-component", { attrs: { titulo: "Nome" } }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.$store.state.item.nome },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("input-container-component", { attrs: { titulo: "CPF" } }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.$store.state.item.CPF },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "input-container-component",
-                  { attrs: { titulo: "Data de Cadastro" } },
-                  [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text", disabled: "" },
-                      domProps: { value: _vm.$store.state.item.created_at },
-                    }),
-                  ]
-                ),
-              ]
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.$store.state.item.nome,
+                    expression: "$store.state.item.nome",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "novoNome",
+                  "aria-describedby": "novoNomeHelp",
+                  placeholder: "Nome da pessoa",
+                },
+                domProps: { value: _vm.$store.state.item.nome },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.$store.state.item, "nome", $event.target.value)
+                  },
+                },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "input-container-component",
+            {
+              attrs: {
+                titulo: "CPF da pessoa",
+                id: "novoCpf",
+                "id-help": "novoCpfHelp",
+                "texto-ajuda": "Informe o CPF da pessoa",
+              },
             },
-            proxy: true,
-          },
-          {
-            key: "rodape",
-            fn: function () {
-              return [
-                _c(
-                  "button",
+            [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" },
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.$store.state.item.CPF,
+                    expression: "$store.state.item.CPF",
                   },
-                  [_vm._v("Fechar")]
-                ),
-              ]
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "novoCpf",
+                  "aria-describedby": "novoCpfHelp",
+                  placeholder: "CPF da pessoa",
+                },
+                domProps: { value: _vm.$store.state.item.CPF },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.$store.state.item, "CPF", $event.target.value)
+                  },
+                },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "input-container-component",
+            {
+              attrs: {
+                titulo: "E-mail da pessoa",
+                id: "novoEmail",
+                "id-help": "novoEmailHelp",
+                "texto-ajuda": "Informe o e-mail da pessoa",
+              },
             },
-            proxy: true,
-          },
-        ]),
-      }),
-      _vm._v(" "),
-      _c("modal-component", {
-        attrs: { id: "modalPessoaExcluir", titulo: "Excluir pessoa" },
-        scopedSlots: _vm._u([
-          {
-            key: "alertas",
-            fn: function () {
-              return undefined
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.$store.state.item.email,
+                    expression: "$store.state.item.email",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "novoEmail",
+                  "aria-describedby": "novoEmailHelp",
+                  placeholder: "E-mail da pessoa",
+                },
+                domProps: { value: _vm.$store.state.item.email },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.$store.state.item,
+                      "email",
+                      $event.target.value
+                    )
+                  },
+                },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "input-container-component",
+            {
+              attrs: {
+                titulo: "Perfil da pessoa",
+                id: "novoPerfil",
+                "id-help": "novoPerfilHelp",
+                "texto-ajuda": "Informe o perfil da pessoa",
+              },
             },
-            proxy: true,
-          },
-          {
-            key: "conteudo",
-            fn: function () {
-              return [
-                _c("input-container-component", { attrs: { titulo: "ID" } }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.$store.state.item.id },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("input-container-component", { attrs: { titulo: "Nome" } }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.$store.state.item.nome },
-                  }),
-                ]),
-              ]
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.$store.state.item.perfil,
+                    expression: "$store.state.item.perfil",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "novoPerfil",
+                  "aria-describedby": "novoPerfilHelp",
+                  placeholder: "Perfil da pessoa",
+                },
+                domProps: { value: _vm.$store.state.item.perfil },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.$store.state.item,
+                      "perfil",
+                      $event.target.value
+                    )
+                  },
+                },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { type: "button", "data-dismiss": "modal" },
+              on: {
+                click: function ($event) {
+                  return _vm.voltar()
+                },
+              },
             },
-            proxy: true,
-          },
-          {
-            key: "rodape",
-            fn: function () {
-              return [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                  },
-                  [_vm._v("Fechar")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.excluir()
-                      },
-                    },
-                  },
-                  [_vm._v("Excluir")]
-                ),
-              ]
+            [_vm._v("Voltar")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              attrs: { type: "button", "data-dismiss": "modal" },
+              on: {
+                click: function ($event) {
+                  return _vm.editar()
+                },
+              },
             },
-            proxy: true,
-          },
-        ]),
-      }),
-      _vm._v(" "),
-      _c("modal-component", {
-        attrs: { id: "modalPessoaEditar", titulo: "Editar pessoa" },
-        scopedSlots: _vm._u([
-          {
-            key: "alertas",
-            fn: function () {
-              return undefined
-            },
-            proxy: true,
-          },
-          {
-            key: "conteudo",
-            fn: function () {
-              return [
-                _c(
-                  "input-container-component",
-                  {
-                    attrs: {
-                      titulo: "Nome da pessoa",
-                      id: "novoNome",
-                      "id-help": "novoNomeHelp",
-                      "texto-ajuda": "Informe o nome da pessoa",
-                    },
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$store.state.item.nome,
-                          expression: "$store.state.item.nome",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "novoNome",
-                        "aria-describedby": "novoNomeHelp",
-                        placeholder: "Nome da pessoa",
-                      },
-                      domProps: { value: _vm.$store.state.item.nome },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.$store.state.item,
-                            "nome",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "input-container-component",
-                  {
-                    attrs: {
-                      titulo: "CPF da pessoa",
-                      id: "novoCpf",
-                      "id-help": "novoCpfHelp",
-                      "texto-ajuda": "Informe o CPF da pessoa",
-                    },
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$store.state.item.CPF,
-                          expression: "$store.state.item.CPF",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "novoCpf",
-                        "aria-describedby": "novoCpfHelp",
-                        placeholder: "CPF da pessoa",
-                      },
-                      domProps: { value: _vm.$store.state.item.CPF },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.$store.state.item,
-                            "CPF",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "input-container-component",
-                  {
-                    attrs: {
-                      titulo: "E-mail da pessoa",
-                      id: "novoEmail",
-                      "id-help": "novoEmailHelp",
-                      "texto-ajuda": "Informe o e-mail da pessoa",
-                    },
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$store.state.item.email,
-                          expression: "$store.state.item.email",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "novoEmail",
-                        "aria-describedby": "novoEmailHelp",
-                        placeholder: "E-mail da pessoa",
-                      },
-                      domProps: { value: _vm.$store.state.item.email },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.$store.state.item,
-                            "email",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "input-container-component",
-                  {
-                    attrs: {
-                      titulo: "Perfil da pessoa",
-                      id: "novoPerfil",
-                      "id-help": "novoPerfilHelp",
-                      "texto-ajuda": "Informe o perfil da pessoa",
-                    },
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$store.state.item.perfil,
-                          expression: "$store.state.item.perfil",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "novoPerfil",
-                        "aria-describedby": "novoPerfilHelp",
-                        placeholder: "Perfil da pessoa",
-                      },
-                      domProps: { value: _vm.$store.state.item.perfil },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.$store.state.item,
-                            "perfil",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]
-                ),
-              ]
-            },
-            proxy: true,
-          },
-          {
-            key: "rodape",
-            fn: function () {
-              return [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                  },
-                  [_vm._v("Fechar")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.editar()
-                      },
-                    },
-                  },
-                  [_vm._v("Editar")]
-                ),
-              ]
-            },
-            proxy: true,
-          },
-        ]),
-      }),
-    ],
-    1
-  )
+            [_vm._v("Editar")]
+          ),
+        ],
+        1
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41373,7 +41538,7 @@ var render = function () {
                       ? _c("span", [
                           _vm._v(
                             "\n                        " +
-                              _vm._s("..." + valor) +
+                              _vm._s(_vm._f("formataDataTempoGlobal")(valor)) +
                               "\n                    "
                           ),
                         ])

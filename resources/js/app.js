@@ -42,11 +42,31 @@ Vue.component('alert-component', require('./components/Alert.vue').default);
 Vue.component('paginate-component', require('./components/Paginate.vue').default);
 
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+Vue.filter('formataDataTempoGlobal', function(d) {
+    if(!d) return ''
+
+    d = d.split('T')
+
+    let data = d[0]
+    let tempo = d[1]
+
+    //formatando a data
+    data = data.split('-')
+    data = data[2] + '/' + data[1] + '/' + data[0]
+
+    //formatar o tempo
+    tempo = tempo.split('.')
+    tempo = tempo[0]
+
+    return data + ' ' 
+})
 
 const app = new Vue({
     el: '#app',

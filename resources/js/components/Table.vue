@@ -13,7 +13,7 @@
                     <td v-for="valor, chaveValor in obj" :key="chaveValor">
                         <span v-if="titulos[chaveValor].tipo == 'texto'">{{valor}}</span>
                         <span v-if="titulos[chaveValor].tipo == 'data'">
-                            {{ '...'+valor}}
+                            {{ valor | formataDataTempoGlobal}}
                         </span>
                     </td>
                     <td v-if="detalhar.visivel || editar.visivel || excluir.visivel">
@@ -31,6 +31,7 @@
     export default {
         props: ['dados', 'titulos', 'editar', 'detalhar', 'excluir'],
         methods: {
+            
             setStore(obj) {
                 console.log(obj)
                 this.$store.state.item = obj
